@@ -15,8 +15,6 @@ drug-prevention-system/
 │ │ └── user_routes.py
 │ ├── services/
 │ ├── utils/
-│ └── **init**.py
-│
 ├── migrations/
 ├── app.py
 ├── requirements.txt
