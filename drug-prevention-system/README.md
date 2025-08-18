@@ -29,36 +29,3 @@ Người dùng có thể tìm hiểu thông tin, tham gia khóa học, làm kh�
 6. **Quản lý chuyên viên tư vấn**: Thông tin, bằng cấp, lịch làm việc.
 7. **Hồ sơ người dùng**: Lịch sử khóa học, lịch hẹn, chương trình tham gia.
 8. **Dashboard & Báo cáo**: Dành cho quản lý & admin.
-
-## 🛠️ Công nghệ sử dụng
-
-- **Backend**: Python (Flask REST API)
-- **Database**: MySQL / SQLite
-- **Frontend**: (có thể dùng ReactJS / HTML-CSS đơn giản trước)
-- **Triển khai**: GitHub, Docker (tuỳ chọn)
-
-## 📂 Cấu trúc thư mục
-
-drug-prevention-system/
-├── api/
-├── mô hình/
-│   ├── course.py
-│   ├── survey.py
-│   └── user.py
-├── routes/
-│   ├── auth_routes.py
-│   ├── consultation_routes.py
-│   ├── course_routes.py
-│   ├── survey_routes.py
-│   └── user_routes.py
-├── services/
-├── utils/
-├── migrations/
-├── app.py
-├── requirements.txt
-├── README.md
-└── venv/
-
-├─ requirements.txt
-├─ README.md
-└─ venv/
