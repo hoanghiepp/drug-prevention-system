@@ -1,5 +1,7 @@
 ## 📂 Cấu trúc thư mục
 
+```bash
+│──
 drug-prevention-system/
 │── api/
 │ ├── models/
@@ -21,3 +23,4 @@ drug-prevention-system/
 ├── requirements.txt
 ├── README.md
 └── venv/
+```
