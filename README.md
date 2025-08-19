@@ -1,6 +1,5 @@
 ## 📂 Cấu trúc thư mục
 
-
 ```bash
 drug-prevention-system/
 │── api/
