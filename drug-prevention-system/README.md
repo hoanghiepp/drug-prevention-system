@@ -1,31 +1,33 @@
 # Drug Use Prevention Support System
 
-Phần mềm hỗ trợ phòng ngừa sử dụng ma túy trong cộng đồng
+A community-based software platform to support drug use prevention.
 
-## 🎯 Giới thiệu
+## Introduction
 
-Hệ thống hỗ trợ phòng ngừa sử dụng ma túy trong cộng đồng của một tổ chức tình nguyện.  
-Người dùng có thể tìm hiểu thông tin, tham gia khóa học, làm khảo sát, đặt lịch tư vấn và theo dõi các chương trình truyền thông giáo dục.
+The system provides information, online courses, risk assessments, consultation scheduling, and educational media programs to help prevent drug use in the community.
 
-## 👥 Vai trò người dùng
+## User Roles
 
-- **Guest (Khách)**: Xem thông tin, blog, giới thiệu tổ chức.
-- **Member (Thành viên)**: Đăng ký khóa học, làm khảo sát, đặt lịch hẹn.
-- **Staff (Nhân viên)**: Quản lý khóa học, bài khảo sát, chương trình truyền thông.
-- **Consultant (Chuyên viên tư vấn)**: Cập nhật thông tin cá nhân, lịch hẹn với người dùng.
-- **Manager (Quản lý)**: Quản lý nhân sự, báo cáo kết quả.
-- **Admin (Quản trị viên)**: Quản lý toàn bộ hệ thống.
+- **Guest**: View organization info, blog, and introduction
+- **Member**: Register for courses, take assessments, schedule consultations
+- **Staff**: Manage courses, surveys, and media programs
+- **Consultant**: Manage personal profile and consultation appointments
+- **Manager**: Manage staff and access reports
+- **Admin**: Full system management
 
-## ⚙️ Chức năng chính
+## Key Features
 
-1. **Trang chủ**: Giới thiệu tổ chức, blog chia sẻ kinh nghiệm.
-2. **Khóa học trực tuyến**: Tìm kiếm & đăng ký các khóa học (nhận thức ma túy, kỹ năng phòng tránh, kỹ năng từ chối).
-   - Nội dung được phân loại theo độ tuổi (học sinh, sinh viên, phụ huynh, giáo viên).
-3. **Khảo sát nguy cơ**:
-   - Làm trắc nghiệm ASSIST, CRAFFT...
-   - Đưa ra mức độ nguy cơ & gợi ý hành động phù hợp.
-4. **Đặt lịch tư vấn trực tuyến**: Người dùng hẹn gặp chuyên viên tư vấn.
-5. **Quản lý chương trình truyền thông**: Tổ chức các hoạt động & khảo sát trước/sau chương trình.
-6. **Quản lý chuyên viên tư vấn**: Thông tin, bằng cấp, lịch làm việc.
-7. **Hồ sơ người dùng**: Lịch sử khóa học, lịch hẹn, chương trình tham gia.
-8. **Dashboard & Báo cáo**: Dành cho quản lý & admin.
+1. **Homepage** – Organization introduction and blog sharing
+2. **Online Courses** – Categorized by age group (students, parents, teachers)
+3. **Risk Assessments** – Tools such as ASSIST, CRAFFT with personalized recommendations
+4. **Consultation Scheduling** – Book online sessions with consultants
+5. **Media Program Management** – Organize and evaluate campaigns
+6. **Consultant Management** – Information, qualifications, schedules
+7. **User Profiles** – Learning history, appointments, and participation records
+8. **Dashboard & Reports** – For managers and administrators
+
+## Installation & Usage
+
+```bash
+
+```
