@@ -1,10 +1,10 @@
 ## 📂 Cấu trúc thư mục
 
-
 ```bash
 drug-prevention-system/
 │── api/
 │ ├── models/
+│ │ ├── consultation.py
 │ │ ├── course.py
 │ │ ├── survey.py
 │ │ └── user.py
