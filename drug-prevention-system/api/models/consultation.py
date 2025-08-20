@@ -1,36 +1,37 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
-from sqlalchemy.orm import relationship
-from app.database import Base
 from datetime import datetime
+from infrastructure.databases import db
 
-class User(Base):
+class User(db.Model):
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
 
-    appointments = relationship('Appointment', back_populates='user')
+    appointments = db.relationship('Appointment', back_populates='user')
 
-class Consultant(Base):
+
+class Consultant(db.Model):
     __tablename__ = 'consultants'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
 
-    schedules = relationship('ConsultantSchedule', back_populates='consultant')
+    schedules = db.relationship('ConsultantSchedule', back_populates='consultant')
 
-class ConsultantSchedule(Base):
+
+class ConsultantSchedule(db.Model):
     __tablename__ = 'consultant_schedules'
-    id = Column(Integer, primary_key=True)
-    consultant_id = Column(Integer, ForeignKey('consultants.id'))
-    available_at = Column(DateTime)
+    id = db.Column(db.Integer, primary_key=True)
+    consultant_id = db.Column(db.Integer, db.ForeignKey('consultants.id'), nullable=False)
+    available_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    consultant = relationship('Consultant', back_populates='schedules')
-    appointment = relationship('Appointment', back_populates='schedule', uselist=False)
+    consultant = db.relationship('Consultant', back_populates='schedules')
+    appointment = db.relationship('Appointment', back_populates='schedule', uselist=False)
 
-class Appointment(Base):
+
+class Appointment(db.Model):
     __tablename__ = 'appointments'
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    schedule_id = Column(Integer, ForeignKey('consultant_schedules.id'))
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    schedule_id = db.Column(db.Integer, db.ForeignKey('consultant_schedules.id'), nullable=False)
 
-    user = relationship('User', back_populates='appointments')
-    schedule = relationship('ConsultantSchedule', back_populates='appointment')
+    user = db.relationship('User', back_populates='appointments')
+    schedule = db.relationship('ConsultantSchedule', back_populates='appointment')
