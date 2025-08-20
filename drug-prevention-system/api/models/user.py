@@ -1,53 +1,27 @@
 #user.py
+from infrastructure.databases import db # Giả định db đã được khởi tạo
+from werkzeug.security import generate_password_hash, check_password_hash
 
-from werkzeug.security import generate_password_hash
-
-# Giả lập cơ sở dữ liệu người dùng bằng một từ điển
-
-_users = {}
-_next_user_id = 1
-
+# Định nghĩa các vai trò (role) của người dùng
 class Role:
-    GUEST = 'Guest'
-    MEMBER = 'Member'
-    STAFF = 'Staff'
-    CONSULTANT = 'Consultant'
-    MANAGER = 'Manager'
-    ADMIN = 'Admin'
+    MEMBER = 'Member' # Vai trò mặc định cho người dùng
 
-class User:
-    def __init__(self, username, email, password, role=Role.MEMBER):
-        global _next_user_id
-        self.id = _next_user_id
-        _next_user_id += 1
-        self.username = username
-        self.email = email
-        self.password = generate_password_hash(password)
-        self.role = role
-
-    @staticmethod
-    def find_by_email(email):
-        """Tìm người dùng theo email."""
-        for user_id, user in _users.items():
-            if user.email == email:
-                return user
-        return None
+# Định nghĩa model User
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    role = db.Column(db.String(50), default=Role.MEMBER)
     
-    @staticmethod
-    def find_by_id(user_id):
-        """Tìm người dùng theo ID."""
-        return _users.get(user_id)
+    # Mã hóa mật khẩu khi lưu
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
 
-    def save(self):
-        """Lưu người dùng vào 'CSDL' giả lập."""
-        _users[self.id] = self
+    # Kiểm tra mật khẩu
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
-    def to_dict(self):
-        """Chuyển đổi đối tượng người dùng thành từ điển."""
-        return {
-            'id': self.id,
-            'username': self.username,
-            'email': self.email,
-            'role': self.role
-        }
-
+    def __repr__(self):
+        return f'<User {self.username}>'
