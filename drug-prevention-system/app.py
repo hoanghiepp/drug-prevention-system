@@ -22,6 +22,10 @@ def create_app():
     # Register blueprint
     app.register_blueprint(auth_bp, url_prefix="/api/v1/auth")
 
+    @app.route("/")
+    def home():
+        return "<h1>Flask API is running 🚀</h1>"
+    
     return app
 
 
