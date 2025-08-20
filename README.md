@@ -2,33 +2,41 @@
 
 ```bash
 drug-prevention-system/
-│── api/
-│   ├── models/                # Database models
-│   │   ├── consultation.py
-│   │   ├── course.py
-│   │   ├── survey.py
-│   │   ├── user.py
-│   │   └── __pycache__/       # Compiled Python cache
-│   │
-│   ├── routes/                # API endpoints (Blueprints)
-│   │   ├── auth_routes.py
-│   │   ├── consultant_routes.py
-│   │   ├── course_routes.py
-│   │   ├── survey_routes.py
-│   │   ├── user_routes.py
-│   │   └── __pycache__/
-│   │
-│   ├── services/              # Business logic (future use)
-│   ├── utils/                 # Helper functions
-│   │   └── __init__.py
-│   └── __init__.py            # Init DB & Migrate
 │
-│── infrastructure/            # Infra setup (if needed later)
-│── migrations/                # Alembic migrations
-│── venv/                      # Virtual environment
+├── __pycache__/                 # Cache Python (tự sinh)
 │
-│── app.py                     # Application entrypoint
-│── config.py                  # Configurations
-│── requirements.txt           # Dependencies
-│── README.md                  # Documentation
+├── api/                         # Chứa toàn bộ API (models, routes, services)
+│   ├── __pycache__/
+│   │
+│   ├── models/                  # Các model (ORM classes cho database)
+│   │   ├── consultation.py      # Model cho Consultation
+│   │   ├── course.py            # Model cho Course
+│   │   ├── survey.py            # Model cho Survey
+│   │   └── user.py              # Model cho User
+│   │
+│   ├── routes/                  # Các API route (FastAPI routers)
+│   │   ├── auth_routes.py       # Đăng nhập, đăng ký, xác thực
+│   │   ├── consultant_routes.py # API cho Consultant
+│   │   ├── course_routes.py     # API cho Course
+│   │   ├── survey_routes.py     # API cho Survey
+│   │   └── user_routes.py       # API cho User
+│   │
+│   ├── services/                # Business logic
+│   │   └── utils/               # Các helper, validate input
+│   │       ├── validate.py
+│   │       └── __init__.py
+│
+├── infrastructure/              # Tầng hạ tầng (database, repository, …)
+│   ├── databases.py             # Khởi tạo SQLAlchemy Session, Engine
+│   └── __pycache__/
+│
+├── instance/                    # Config runtime (instance-specific)
+│
+├── migrations/                  # Alembic migration files (versioned schema)
+│
+├── app.py                       # Entry point (khởi chạy FastAPI/Flask app)
+├── config.py                    # File cấu hình (DB_URI, JWT_SECRET, …)
+├── requirements.txt             # Danh sách thư viện cần cài
+└── README.md                    # Tài liệu dự án
+
 ```
