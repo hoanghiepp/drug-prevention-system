@@ -1,4 +1,6 @@
-from flask import Flask, jsonify
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from api import db, migrate  # lấy db, migrate từ api/__init__.py
 from api.routes.auth_routes import auth_bp
@@ -7,7 +9,6 @@ from config import Config
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
 
     # JWT
     app.config['JWT_SECRET_KEY'] = 'your-super-secret-key'  # nên lưu trong biến môi trường
