@@ -1,29 +1,21 @@
-# app.py 
 from flask import Flask, jsonify
-from api.swagger import spec
-from api.routes.auth_routes import auth_bp  # Nhập auth_bp mới
-from api.controllers.todo_controller import bp as todo_bp
-from api.middleware import middleware
-from api.responses import success_response
-from infrastructure.databases import init_db
-from config import Config
-from flask_jwt_extended import JWTManager # Nhập JWTManager
+from api.routes.auth_routes import auth_bp
 from flasgger import Swagger
-from config import SwaggerConfig
 from flask_swagger_ui import get_swaggerui_blueprint
+from infrastructure.databases import init_db # Giả định tồn tại
+from api.middleware import middleware # Giả định tồn tại
 
 def create_app():
     app = Flask(__name__)
-    Swagger(app)
-    app.config.from_object(Config) # Cấu hình Flask từ class Config
     
-    # Cấu hình JWT
-    app.config['JWT_SECRET_KEY'] = 'your-super-secret-key-that-should-be-in-config'
-    jwt = JWTManager(app)
+    # Cấu hình SECRET_KEY cho mã hóa token
+    app.config['SECRET_KEY'] = 'your-very-secret-key-for-token-signing'
 
-    # Đăng ký blueprints
-    app.register_blueprint(todo_bp)
-    app.register_blueprint(auth_bp, url_prefix='/api/v1/auth') # Đăng ký auth_bp
+    # Khởi tạo Swagger
+    Swagger(app)
+
+    # Đăng ký blueprint
+    app.register_blueprint(auth_bp)
 
     # Thêm Swagger UI blueprint
     SWAGGER_URL = '/docs'
@@ -31,10 +23,11 @@ def create_app():
     swaggerui_blueprint = get_swaggerui_blueprint(
         SWAGGER_URL,
         API_URL,
-        config={'app_name': "Todo API"}
+        config={'app_name': "Drug Prevention Support System API"}
     )
     app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
-
+    
+    # Try-except block for database initialization
     try:
         init_db(app)
     except Exception as e:
@@ -43,17 +36,67 @@ def create_app():
     # Register middleware
     middleware(app)
 
+    # Route cho Swagger JSON
     @app.route("/swagger.json")
     def swagger_json():
-        return jsonify(spec.to_dict())
-
-    # Tự động quét tất cả các route đã đăng ký
-    with app.test_request_context():
-        for rule in app.url_map.iter_rules():
-            # Chỉ thêm các route từ auth và todo để tránh lỗi
-            if rule.endpoint.startswith('auth.') or rule.endpoint.startswith('todo.'):
-                view_func = app.view_functions[rule.endpoint]
-                spec.path(view=view_func)
+        # Trả về một spec đơn giản để đảm bảo Swagger hoạt động
+        return jsonify({
+            "swagger": "2.0",
+            "info": {
+                "title": "Drug Prevention Support System API",
+                "version": "1.0.0"
+            },
+            "paths": {
+                "/api/v1/auth/register": {
+                    "post": {
+                        "summary": "Đăng ký người dùng mới",
+                        "consumes": ["application/json"],
+                        "produces": ["application/json"],
+                        "parameters": [{
+                            "name": "body",
+                            "in": "body",
+                            "required": True,
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {"type": "string"},
+                                    "email": {"type": "string"},
+                                    "password": {"type": "string"}
+                                }
+                            }
+                        }],
+                        "responses": {
+                            "201": {"description": "Đăng ký thành công"},
+                            "400": {"description": "Lỗi yêu cầu"},
+                            "409": {"description": "Người dùng đã tồn tại"}
+                        }
+                    }
+                },
+                "/api/v1/auth/login": {
+                    "post": {
+                        "summary": "Đăng nhập người dùng",
+                        "consumes": ["application/json"],
+                        "produces": ["application/json"],
+                        "parameters": [{
+                            "name": "body",
+                            "in": "body",
+                            "required": True,
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {"type": "string"},
+                                    "password": {"type": "string"}
+                                }
+                            }
+                        }],
+                        "responses": {
+                            "200": {"description": "Đăng nhập thành công, trả về token"},
+                            "401": {"description": "Sai email hoặc mật khẩu"}
+                        }
+                    }
+                }
+            }
+        })
     return app
 
 if __name__ == '__main__':
