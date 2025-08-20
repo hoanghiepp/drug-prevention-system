@@ -25,3 +25,19 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
+        # api/models/user.py
+
+from api import db
+from api.models.course import user_course
+
+class User(db.Model):
+    __tablename__ = "users"
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+    # Quan hệ với Course
+    courses = db.relationship("Course", secondary=user_course, back_populates="users")
+
+
