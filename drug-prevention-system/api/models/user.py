@@ -1,43 +1,28 @@
-#user.py
-from infrastructure.databases import db # Giả định db đã được khởi tạo
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-
-# Định nghĩa các vai trò (role) của người dùng
-class Role:
-    MEMBER = 'Member' # Vai trò mặc định cho người dùng
-
-# Định nghĩa model User
-class User(db.Model):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)
-    role = db.Column(db.String(50), default=Role.MEMBER)
-    
-    # Mã hóa mật khẩu khi lưu
-    def set_password(self, password):
-        self.password = generate_password_hash(password)
-
-    # Kiểm tra mật khẩu
-    def check_password(self, password):
-        return check_password_hash(self.password, password)
-
-    def __repr__(self):
-        return f'<User {self.username}>'
-        # api/models/user.py
-
-from api import db
-from api.models.course import user_course
+from app import db
 
 class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), unique=True, nullable=False)
+    username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    role = db.Column(db.String(20), default="Guest")  # Guest, Member, Staff, Consultant, Manager, Admin
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # Quan hệ với Course
-    courses = db.relationship("Course", secondary=user_course, back_populates="users")
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
 
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            "role": self.role,
+            "created_at": self.created_at
+        }
