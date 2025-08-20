@@ -1,20 +1,27 @@
-#user.py
-from infrastructure.databases import db # Giả định db đã được khởi tạo
 from werkzeug.security import generate_password_hash, check_password_hash
+from api import db
+from api.models.course import user_course  # Bảng trung gian
 
-# Định nghĩa các vai trò (role) của người dùng
+# Vai trò người dùng
 class Role:
-    MEMBER = 'Member' # Vai trò mặc định cho người dùng
+    MEMBER = 'Member'
+    STAFF = 'Staff'
+    CONSULTANT = 'Consultant'
+    MANAGER = 'Manager'
+    ADMIN = 'Admin'
 
-# Định nghĩa model User
 class User(db.Model):
     __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+    username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
     role = db.Column(db.String(50), default=Role.MEMBER)
-    
+
+    # Quan hệ với Course (many-to-many)
+    courses = db.relationship("Course", secondary=user_course, back_populates="users")
+
     # Mã hóa mật khẩu khi lưu
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -24,20 +31,4 @@ class User(db.Model):
         return check_password_hash(self.password, password)
 
     def __repr__(self):
-        return f'<User {self.username}>'
-        # api/models/user.py
-
-from api import db
-from api.models.course import user_course
-
-class User(db.Model):
-    __tablename__ = "users"
-
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-
-    # Quan hệ với Course
-    courses = db.relationship("Course", secondary=user_course, back_populates="users")
-
-
+        return f"<User {self.username}>"
