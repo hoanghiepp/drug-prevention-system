@@ -1,34 +1,40 @@
-from flask import Flask
+from flask import Flask, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-from api import db, migrate  # lấy db, migrate từ api/__init__.py
-from api.routes.auth_routes import auth_bp
-from config import Config
+import os
+
+# ====== Flask backend setup ======
+app = Flask(
+    __name__,
+    static_folder="../frontend/dist",      # đường dẫn build React
+    template_folder="../frontend/dist"
+)
+
+# Cấu hình DB (tùy bạn)
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"  # hoặc MSSQL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = "super-secret-key"
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+jwt = JWTManager(app)
+
+# ====== API Flask ======
+@app.route("/api/hello")
+def hello():
+    return jsonify({"message": "Hello from Flask API 🚀"})
 
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Config)
-
-    # JWT
-    app.config['JWT_SECRET_KEY'] = 'your-super-secret-key'  # nên lưu trong biến môi trường
-    jwt = JWTManager(app)
-
-    # Init DB + migrate
-    db.init_app(app)
-    migrate.init_app(app, db)
-
-    # Register blueprint
-    app.register_blueprint(auth_bp, url_prefix="/api/v1/auth")
-
-    @app.route("/")
-    def home():
-        return "<h1>Flask API is running 🚀</h1>"
-    
-    return app
+# ====== React frontend (serve build) ======
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve_react(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
 
 
 if __name__ == "__main__":
-    app = create_app()
-    app.run(host="0.0.0.0", port=6868, debug=True)
+    app.run(host="127.0.0.1", port=6868, debug=True)
