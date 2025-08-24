@@ -40,6 +40,7 @@ drug-prevention-system/
 └── README.md                    # Tài liệu dự án
 
 ```
+```bash
 ## 📂 Project Structure frontend
 frontend/
 └─ src/
@@ -68,3 +69,4 @@ frontend/
    ├─ index.css                 # CSS global
    ├─ main.jsx                  # Entry ReactDOM → render <App/>
    └─ vite.config.js            # Cấu hình Vite (có thể thêm alias '@')
+```
