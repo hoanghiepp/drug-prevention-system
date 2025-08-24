@@ -1,4 +1,4 @@
-## 📂 Project Structure
+## 📂 Project Structure backend
 
 ```bash
 drug-prevention-system/
@@ -40,3 +40,31 @@ drug-prevention-system/
 └── README.md                    # Tài liệu dự án
 
 ```
+## 📂 Project Structure frontend
+frontend/
+└─ src/
+   ├─ api/                      # (trống) Nên đặt hàm gọi API/axios ở đây
+   ├─ assets/                   # Ảnh, svg… dùng trong code (được bundle bởi Vite)
+   │   ├─ ảnh ma túy.jpg        # Nên đổi tên không dấu/không khoảng trắng
+   │   └─ react.svg
+   ├─ components/               # Thành phần tái sử dụng
+   │   ├─ Footer.jsx
+   │   ├─ Navbar.jsx
+   │   └─ ProtectedRoute.jsx    # Chặn route cần đăng nhập
+   ├─ pages/                    # Các trang (mỗi route một trang)
+   │   ├─ About.jsx / About.css
+   │   ├─ Consultation.jsx / Consultation.css
+   │   ├─ Courses.jsx / Courses.css
+   │   ├─ Dashboard.jsx / Dashboard.css
+   │   ├─ Home.jsx
+   │   ├─ Login.jsx / Login.css
+   │   ├─ Media.jsx
+   │   ├─ Register.jsx
+   │   ├─ Specialists.jsx
+   │   └─ Survey.jsx
+   ├─ App.css                   # Style chung cho App
+   ├─ App.jsx                   # Khai báo router/khung trang
+   ├─ firebase.js               # Cấu hình Firebase (auth/storage… nếu dùng)
+   ├─ index.css                 # CSS global
+   ├─ main.jsx                  # Entry ReactDOM → render <App/>
+   └─ vite.config.js            # Cấu hình Vite (có thể thêm alias '@')
