@@ -1,0 +1,59 @@
+/* Container chính của Dashboard */
+.dashboard-container {
+  background: #f9fcff; /* nền nhạt */
+  padding: 2rem;
+  border-radius: 0; /* vuông góc, bỏ bo tròn */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 1000px; /* cho cân giữa màn hình */
+}
+
+/* Tiêu đề Dashboard */
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #222; /* chữ đen */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Hàng các thẻ con */
+.dashboard-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Card con (Users, Surveys, Appointments) */
+.dashboard-card {
+  background: #fff;
+  border-radius: 0; /* vuông góc */
+  padding: 2rem;
+  min-width: 200px;
+  flex: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.dashboard-card span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff; /* số liệu xanh dương nổi bật */
+}
+
+/* Hover effect */
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}

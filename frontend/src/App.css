@@ -134,10 +134,23 @@ body {
 
 /* Courses */
 .courses {
-  background: #f1f9f9;
-  padding: 3rem 2rem;
+  background: #ffffff;
+  max-width: 1100px;
+  margin: auto;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
+/* Course Cards */
+h2 {
+  color: #d7dcdd;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+h2 {
+  color: #000307; /* xanh dương đậm */
+  font-weight: 700;
+}
 .course-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -145,7 +158,7 @@ body {
 }
 
 .course-card {
-  background: #fff;
+  background: #000000;
   padding: 2rem;
   border-radius: 15px;
   text-align: center;
@@ -170,29 +183,52 @@ body {
   padding: 3rem 2rem;
 }
 
-/* Contact */
 .contact {
-  padding: 3rem 2rem;
-  background: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.section-titlee {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #222 !important; /* đen dịu hơn */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* bóng mờ nhẹ */
 }
 
 .contact-form {
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 500px; /* 👈 Giới hạn chiều rộng */
+  margin: 0 auto; /* 👈 Căn giữa */
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 15px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form input,
 .contact-form textarea {
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
-.contact-form button {
-  align-self: center;
+.contact-form .btn.primary {
+  background: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.contact-form .btn.primary:hover {
+  background: #0056b3;
 }
 
 /* Footer */
@@ -219,46 +255,101 @@ body {
   }
 }
 
-/* App.css */
 .btn-group {
   display: flex;
-  gap: 15px;
   justify-content: center;
-  margin-top: 20px;
+  gap: 15px;
 }
 
 .btn {
+  display: inline-block;
   padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .btn.primary {
-  background-color: #0077ff;
+  background-color: #007bff;
   color: white;
 }
 
 .btn.primary:hover {
-  background-color: #005fcc;
+  background-color: #0056b3;
 }
 
 .btn.secondary {
-  background-color: white;
-  color: #0077ff;
+  background-color: #e0e0e0;
+  color: #0e0d0d;
 }
 
 .btn.secondary:hover {
-  background-color: #e6e6e6;
+  background-color: #bdbdbd;
 }
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.2);
+/* Tiêu đề Register */
+.page.auth h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Dòng "Đã có tài khoản? Login" */
+.page.auth p {
+  color: white;
+}
+
+/* Link Login trong dòng chữ */
+.page.auth p a {
+  color: #4da6ff; /* xanh nhạt để nổi bật */
+  text-decoration: underline;
+}
+
+/* Căn giữa toàn màn hình cho trang Register & Login */
+.page.auth {
+  display: flex;
+  justify-content: center; /* căn giữa ngang */
+  align-items: center; /* căn giữa dọc */
+  height: 100vh; /* full màn hình */
+  flex-direction: column;
+}
+
+/* Khung form */
+.stack.small-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Input */
+.stack.small-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Nút Register */
+.stack.small-card .btn.primary {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.stack.small-card .btn.primary:hover {
+  background: #0056b3;
 }
 
 /* Background toàn trang */
@@ -271,6 +362,7 @@ body {
   background: url("https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/filters:quality(95)/https://cms-prod.s3-sgn09.fptcloud.com/thoi_gian_cai_nghien_ma_tuy_bao_lau_theo_luat_phong_chong_ma_tuy_2021_1_731ce159dc.png")
     no-repeat center center/cover;
   z-index: -1; /* nằm sau nội dung */
+  z-index: -1;
   filter: brightness(0.5); /* làm tối ảnh nền */
 }
 
@@ -299,7 +391,7 @@ body {
   color: #000000; /* đen */
   text-align: center;
   font-size: 2rem; /* chỉnh to nhỏ tùy */
-  font-weight: bold;
+  font-weight: bold; /* in đậm */
   margin-bottom: 1rem;
 }
 
@@ -434,9 +526,10 @@ p {
   padding: 40px 20px;
 }
 
-.section-title {
+.section-titlee {
   font-size: 2rem;
   margin-bottom: 30px;
+  color: #000000;
 }
 
 .services {
@@ -507,4 +600,53 @@ p {
   .services {
     grid-template-columns: 1fr;
   }
+}
+
+.footer {
+  background: #111; /* nền đen */
+  color: #fff !important; /* ép chữ trắng */
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 14px;
+  position: relative;
+  z-index: 10; /* đảm bảo không bị layer che */
+}
+
+.footer p {
+  color: #fff !important; /* chắc chắn chữ trắng */
+  margin: 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px; /* khoảng cách giữa các liên kết */
+  justify-content: center; /* căn giữa ngang */
+  align-items: center;
+  margin-top: 20px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white; /* đổi màu chữ nếu cần */
+  font-size: 16px;
+  font-weight: 500;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-links a img {
+  margin-right: 8px; /* khoảng cách giữa logo và chữ */
+}
+
+.social-links a:hover {
+  transform: scale(1.1); /* hiệu ứng phóng to nhẹ khi hover */
+  color: #00aced; /* đổi màu chữ khi hover (ví dụ xanh Facebook) */
+}
+
+/* Video Container */
+.video-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 }

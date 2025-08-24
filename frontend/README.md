@@ -1,12 +1,37 @@
-# React + Vite
+# Drug Prevention System - Community Health Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+**Drug Prevention System** is a web-based platform designed to raise awareness, provide resources, and support communities in the fight against drug abuse.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The main goals of the project are:
 
-## Expanding the ESLint configuration
+- Share knowledge and materials on drug prevention.
+- Allow users to **book online counseling appointments**.
+- Connect communities with **health professionals**.
+- Support public health awareness campaigns.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Technologies
+
+- **Frontend:** ReactJS (Vite/CRA) + CSS3 (Responsive with Flex/Grid)
+- **Backend:** Flask (Python) / NodeJS (if implemented)
+- **Database:** SQL Server / MySQL
+- **Docker** (for containerized deployment)
+- **Git** for version control
+
+```bash
+cd frontend
+
+npm install       # cài dependencies
+
+npm run dev        # chạy frontend để phát triển (http://localhost:6868)
+
+npm run build      # build ra file tĩnh (dist/)
+
+# chay fontend xong roi chay backend
+cd backend
+python app.py
+
+```
