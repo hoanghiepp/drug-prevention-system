@@ -40,8 +40,11 @@ drug-prevention-system/
 └── README.md                    # Tài liệu dự án
 
 ```
-```bash
+
 ## 📂 Project Structure frontend
+
+```bash
+
 frontend/
 └─ src/
    ├─ api/                      # (trống) Nên đặt hàm gọi API/axios ở đây
