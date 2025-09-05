@@ -40,11 +40,19 @@ drug-prevention-system/
 └── README.md                    # Tài liệu dự án
 
 ```
+<<<<<<< HEAD
 
 ## 📂 Project Structure frontend
 
 ```bash
 
+=======
+## 📂 Project Structure frontend
+```bash
+
+
+
+>>>>>>> ee7ae184310da2f7a50e2cf57babe0052d4dd41b
 frontend/
 └─ src/
    ├─ api/                      # (trống) Nên đặt hàm gọi API/axios ở đây
@@ -73,3 +81,19 @@ frontend/
    ├─ main.jsx                  # Entry ReactDOM → render <App/>
    └─ vite.config.js            # Cấu hình Vite (có thể thêm alias '@')
 ```
+## Run
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+# chay fontend xong roi chay
+python app.py
+```
+## LINK RUN HOST 
+http://127.0.0.1:6868/
