@@ -42,6 +42,23 @@ drug-prevention-system/
 ```
 ## 📂 Project Structure frontend
 ```bash
+## Run
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+# chay fontend xong roi chay
+python app.py
+```
+## LINK RUN HOST 
+http://127.0.0.1:6868/
+
 
 frontend/
 └─ src/
