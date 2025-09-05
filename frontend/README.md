@@ -24,6 +24,9 @@ The main goals of the project are:
 ```bash
 cd frontend
 
+nếu chưa cài node.js thì cài
+https://nodejs.org/en
+
 npm install       # cài dependencies
 
 npm run dev        # chạy frontend để phát triển (http://localhost:6868)
