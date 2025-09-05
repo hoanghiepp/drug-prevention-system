@@ -21,11 +21,11 @@ The main goals of the project are:
 - **Docker** (for containerized deployment)
 - **Git** for version control
 
+
+## nếu chưa cài node.js thì cài
+https://nodejs.org/en
 ```bash
 cd frontend
-
-nếu chưa cài node.js thì cài
-https://nodejs.org/en
 
 npm install       # cài dependencies
 
