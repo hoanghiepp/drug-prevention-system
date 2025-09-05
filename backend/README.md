@@ -42,6 +42,6 @@ pip install -r requirements.txt
 # chay fontend xong roi chay
 python app.py
 
-## Run
-http://127.0.0.1:6868/
 ```
+## link HOST
+http://127.0.0.1:6868/
