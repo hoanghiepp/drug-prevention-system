@@ -24,6 +24,8 @@ The main goals of the project are:
 
 ## nếu chưa cài node.js thì cài
 https://nodejs.org/en
+
+## RUN
 ```bash
 cd frontend
 
