@@ -52,7 +52,7 @@ drug-prevention-system/
 
 
 
->>>>>>> ee7ae184310da2f7a50e2cf57babe0052d4dd41b
+>>>>>>> 
 frontend/
 └─ src/
    ├─ api/                      # (trống) Nên đặt hàm gọi API/axios ở đây
